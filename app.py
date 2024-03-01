@@ -41,15 +41,15 @@ async def extract_ids(soup,start_date,end_date):
     # print(df)
     return df.ids.to_dict()
 
-async def download(start_date,end_date):
+async def download(start_date,end_date,username,password):
         st.write('Currently Downloading')
         async with async_playwright() as p:
             logging.info('Started')
             browser = await p.chromium.launch(
             )
 
-            payload = {'username': 'gomedia',
-                       'password': 'Shaibi17'}
+            payload = {'username': username,
+                       'password': password}
 
             page = await browser.new_page()
             await page.goto('https://my.hostednumbers.com/login.aspx')
